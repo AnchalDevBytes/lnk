@@ -35,7 +35,6 @@ export default function LandingPage() {
     }
   }
 
-
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
@@ -62,7 +61,7 @@ export default function LandingPage() {
                     value={longUrl}
                     onChange={(e) => setLongUrl(e.target.value)}
                   />
-                  <Button type="submit">Shorten</Button>
+                  <Button type="submit">{loading ? "" : "Shorten"}</Button>
                 </form>
                 {shortUrl && <p>Shortened URL: <a href={`/${shortUrl}`}>{`/${shortUrl}`}</a></p>}
               </div>
