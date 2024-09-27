@@ -1,0 +1,13 @@
+./frontend/.env
+./frontend/node_modules
+
+./lnk-backend/.env
+./lnk-backend/wrangler.toml
+./lnk-backend/node_modules
+
+/frontend/.env
+/frontend/node_modules
+
+/lnk-backend/.env
+/lnk-backend/wrangler.toml
+/lnk-backend/node_modules

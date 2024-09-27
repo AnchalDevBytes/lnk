@@ -1,0 +1,27 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Url {
+  id            Int             @id @default(autoincrement())
+  shortId       String          @unique
+  redirectUrl   String
+  visitHistory  VisitHistory[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model VisitHistory {
+  id        Int      @id @default(autoincrement())
+  urlId     Int
+  url       Url      @relation(fields: [urlId], references: [id])
+  timestamp DateTime @default(now())
+}
+
+// backend/prisma/migrations/20240927065229_init_schema
