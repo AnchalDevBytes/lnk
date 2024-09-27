@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { ShortenUrlInterface } from "@/interfaces/shortenUrlInterface";
 import axios, { AxiosResponse } from "axios";
+import Link from "next/link";
 import { FormEvent, useState } from 'react'
 import { toast } from 'react-toastify';
 
@@ -15,7 +16,12 @@ export default function LandingPage() {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } : AxiosResponse<ShortenUrlInterface> = await axios.post(`${BACKEND_URL}/api/v1/url`, longUrl);
+      const { data } : AxiosResponse<ShortenUrlInterface> = await axios.post(`${BACKEND_URL}/api/v1/url`, { url: longUrl },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
 
       if(data.status !== 200) {
         toast.error(data.message);
@@ -60,9 +66,15 @@ export default function LandingPage() {
                     value={longUrl}
                     onChange={(e) => setLongUrl(e.target.value)}
                   />
-                  <Button type="submit">{loading ? "" : "Shorten"}</Button>
+                  <Button type="submit">{loading ? "creating..." : "Shorten"}</Button>
                 </form>
-                {shortUrl && <p>Shortened URL: <a href={`/${shortUrl}`}>{`/${shortUrl}`}</a></p>}
+                {shortUrl && 
+                  <p className="text-black text-base font-medium tracking-wider">Shortened URL:
+                    <Link 
+                      className="cursor-pointer text-black/55 font-bold"
+                      href={`${BACKEND_URL}/api/v1/url/${shortUrl}`}>{`${shortUrl}`}
+                    </Link>
+                  </p>}
               </div>
             </div>
           </div>
@@ -70,7 +82,7 @@ export default function LandingPage() {
         <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
-              Why Choose LinkSnip?
+              Why Choose LNK?
             </h2>
             <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
               <div className="flex flex-col items-center text-center">
