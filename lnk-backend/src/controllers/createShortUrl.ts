@@ -10,7 +10,6 @@ export const createShortUrl = async (c: Context) => {
 
     const body = await c.req.json();
     const { url } = body.data || body;
-    console.log(url);
     
     if(!url) {
         return c.json({

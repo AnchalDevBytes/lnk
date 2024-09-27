@@ -8,11 +8,18 @@ const app = new Hono<{
   }
 }>()
 
-app.use('/*', cors())
+app.use('*', cors({
+  origin: ['http://localhost:3000', 'https://lnk-kappa.vercel.app'],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  maxAge: 86400,
+  credentials: true
+}))
+
 app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
 app.route('/api/v1/url', urlRoute);
 
-export default app
+export default app;
