@@ -1,6 +1,5 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { ShortenUrlInterface } from "@/interfaces/shortenUrlInterface";
 import axios, { AxiosResponse } from "axios";
 import { FormEvent, useState } from 'react'
@@ -54,8 +53,8 @@ export default function LandingPage() {
                   onSubmit={handleSubmit}
                   className="flex space-x-2"
                 >
-                  <Input 
-                    className="flex-1" 
+                  <input 
+                    className="flex-1 border-2 border-gray-300 px-5 py-[5px] rounded-md" 
                     placeholder="Enter your long URL" 
                     type="url"
                     value={longUrl}
