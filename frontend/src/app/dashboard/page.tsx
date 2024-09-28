@@ -20,9 +20,6 @@ export default function Dashboard() {
     }
   }, []);
 
-  console.log("shortId", shortId);
-  
-
   const fetchAnalytics = async () => { 
     try {
       setLoading(true);
@@ -64,14 +61,15 @@ export default function Dashboard() {
                   <input
                     type="text"
                     readOnly
-                    value={`${BACKEND_URL}/${shortId}`}
+                    placeholder="Generate new short url to see here"
+                    value={shortId ? `${BACKEND_URL}/${shortId}` : ""}
                     className="border p-2 w-full"
                   />
                   <Button onClick={copyToClipboard}>Copy URL</Button>
                 </div>
               </div>
               <div className="border rounded-lg p-4">
-                <h2 className="text-xl font-semibold mb-4">URL Analytics</h2>
+                <h2 className="text-xl font-semibold mb-4">URL Visit History</h2>
                 <div className="space-y-4">
                   <input
                     type="text"
@@ -80,7 +78,7 @@ export default function Dashboard() {
                     onChange={(e) => setShortId(e.target.value)}
                     className="border p-2 w-full"
                   />
-                  <Button onClick={fetchAnalytics}>{loading ? "loading..." : "Get Analytics"}</Button>
+                  <Button onClick={fetchAnalytics}>{loading ? "loading..." : "Get History"}</Button>
                   {analyticsData && (
                     <div>
                       <h2 className="text-xl">Total Clicks: {analyticsData.length}</h2>

@@ -133,7 +133,7 @@ export default function LandingPage() {
                   <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
                   <path d="m12 12 4 10 1.7-4.3L22 16Z" />
                 </svg>
-                <h3 className="text-xl font-bold mb-2">Detailed Analytics</h3>
+                <h3 className="text-xl font-bold mb-2">Visit History</h3>
                 <p className="text-gray-500 dark:text-gray-400">Track clicks and analyze your link performance.</p>
               </div>
             </div>
