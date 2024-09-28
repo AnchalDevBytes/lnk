@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button"
 import { ShortenUrlInterface } from "@/interfaces/shortenUrlInterface";
 import axios, { AxiosResponse } from "axios";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from 'react'
 import { toast } from 'react-toastify';
