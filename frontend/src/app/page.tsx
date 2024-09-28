@@ -3,14 +3,16 @@ import { Button } from "@/components/ui/button"
 import { ShortenUrlInterface } from "@/interfaces/shortenUrlInterface";
 import axios, { AxiosResponse } from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from 'react'
 import { toast } from 'react-toastify';
 
 export default function LandingPage() {
   const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [longUrl, setLongUrl] = useState('');
-  const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e : FormEvent ) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ export default function LandingPage() {
       if(data.status !== 200) {
         toast.error(data.message);
       } else {
-        setShortUrl(data.id)
+        router.push(`/dashboard?shortUrl=${data.id}`)
       }
       setLoading(false);
 
@@ -68,13 +70,6 @@ export default function LandingPage() {
                   />
                   <Button type="submit">{loading ? "creating..." : "Shorten"}</Button>
                 </form>
-                {shortUrl && 
-                  <p className="text-black text-base font-medium tracking-wider">Shortened URL:
-                    <Link 
-                      className="cursor-pointer text-black/55 font-bold"
-                      href={`${BACKEND_URL}/api/v1/url/${shortUrl}`}>{`${shortUrl}`}
-                    </Link>
-                  </p>}
               </div>
             </div>
           </div>
