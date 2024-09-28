@@ -3,7 +3,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center">
+    <header className="px-4 lg:px-[5%] h-20 flex items-center">
         <Link className="flex items-center justify-center" href="/">
           <span className="sr-only">LinkSnip</span>
           <svg
@@ -26,9 +26,6 @@ const Header = () => {
           </Link>
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="/dashboard">
             Dashboard
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/pricing">
-            Pricing
           </Link>
         </nav>
     </header>
