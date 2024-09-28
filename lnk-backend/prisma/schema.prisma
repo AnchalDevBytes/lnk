@@ -6,10 +6,21 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        Int @id @default(autoincrement())
+  name      String 
+  email     String @unique
+  password  String
+  urlsCreated       Url[]
 }
 
 model Url {
   id            Int             @id @default(autoincrement())
+  userId        Int?
+  user          User? @relation(fields: [userId], references: [id])
   shortId       String          @unique
   redirectUrl   String
   visitHistory  VisitHistory[]

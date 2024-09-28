@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import urlRoute from './routes/urlRoute'
+import { analytics, createShortUrl, redirectToOriginalUrl } from './controllers/createShortUrl'
 
 const app = new Hono<{
   Bindings : {
@@ -20,6 +20,8 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-app.route('/api/v1/url', urlRoute);
+app.post('/api/v1/url', createShortUrl);
+app.get('/:shortId', redirectToOriginalUrl);
+app.get('/analytics/:shortId', analytics);
 
 export default app;
